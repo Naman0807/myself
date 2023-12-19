@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://th.bing.com/th/id/OIP.nOXT2epnygajGXU6J_LzPwHaHa?rs=1&pid=ImgDetMain"
+        type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naman's Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="description" content="Naman Parmar's portfolio showcasing web development projects and skills.">
+</head>
+
+<body class="bg-gray-900 text-white font-sans overflow-x-hidden">
+
+    <header class="bg-indigo-800 text-white text-center py-20 animate__animated animate__fadeIn animate__delay-1s">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-extrabold mb-4">Hi 👋, I'm Naman Parmar</h1>
+            <p class="text-lg">Crafting digital experiences with passion</p>
+        </div>
+    </header>
+
+    <nav class="bg-gray-800 text-white p-4 animate__animated animate__fadeInDown animate__delay-0.5s">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#"
+                class="text-2xl font-bold hover:text-gray-300 hover:border-b-2 hover:border-indigo-500 transition duration-300">Naman's
+                Portfolio</a>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-white focus:outline-none" role="button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <ul class="hidden lg:flex space-x-4">
+                <li><a href="#"
+                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Home</a>
+                </li>
+                <li><a href="#portfolio"
+                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Portfolio</a>
+                </li>
+                <li><a href="#skills"
+                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Skills</a>
+                </li>
+                <li><a href="#github-stats"
+                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">GitHub
+                        Stats</a></li>
+                <li><a href="#contact"
+                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="mobile-menu"
+        class="lg:hidden hidden bg-gray-800 text-white p-4 animate__animated animate__fadeIn animate__delay-0.5s">
+        <ul class="flex flex-col space-y-4">
+            <li><a href="#"
+                    class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Home</a>
+            </li>
+            <li><a href="#portfolio"
+                    class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Portfolio</a>
+            </li>
+            <li><a href="#skills"
+                    class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Skills</a>
+            </li>
+            <li><a href="#github-stats"
+                    class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">GitHub
+                    Stats</a></li>
+            <li><a href="#contact"
+                    class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <button id="scrollToTopBtn"
+        class="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300 hidden z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <section id="about"
+        class="container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s">
+        <h2 class="text-3xl font-extrabold mb-6 text-white">About Me</h2>
+        <p class="text-gray-300">
+            Hello! I'm Naman Parmar, a passionate frontend developer based in India. I love creating
+            interactive and visually appealing websites. With a strong foundation in HTML, CSS, and
+            JavaScript, I bring ideas to life through elegant and responsive web designs.
+        </p>
+        <p class="text-gray-300 mt-4">
+            My journey in web development has exposed me to various technologies, including frameworks
+            like Angular and libraries like Bootstrap. I am constantly exploring new tools and techniques
+            to stay updated with the rapidly evolving landscape of frontend development.
+        </p>
+        <p class="text-gray-300 mt-4">
+            When I'm not coding, you can find me exploring the latest trends in design, contributing to open-source
+            projects, or enjoying a good cup of coffee. Let's connect and build something amazing together!
+        </p>
+    </section>
+
+    <section id="portfolio"
+        class="container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s animated-element">
+        <h2 class="text-3xl font-extrabold mb-6">My Portfolio</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
+                <h3 class="text-lg text-center font-semibold mb-2">Photographer Portfolio</h3>
+                <img src="/img/1.png" alt="Photographer Portfolio Image"
+                    class="mt-4 rounded-md w-full h-40 object-cover">
+                <p class="text-gray-300 mt-4">For a photographer</p>
+                <p class="text-gray-300 mt-2"><strong>Languages:</strong> HTML, CSS</p>
+                <a target="_blank" href="https://naman0807.github.io/viraj/index.html"
+                    class="block mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md text-center transition duration-300">
+                    View Project
+                </a>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
+                <h3 class="text-lg text-center font-semibold mb-2">Old Portfolio</h3>
+                <img src="/img/2.png" alt="Old Portfolio Image" class="mt-4 rounded-md w-full h-40 object-cover">
+                <p class="text-gray-300 mt-4">Old portfolio</p>
+                <p class="text-gray-300 mt-2"><strong>Languages:</strong> HTML, CSS</p>
+                <a target="_blank" href="https://naman0807.github.io/portfolio/"
+                    class="block mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md text-center transition duration-300">
+                    View Project
+                </a>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
+                <h3 class="text-lg text-center font-semibold mb-2">Background Generator</h3>
+                <img src="/img/3.png" alt="Background Generator Image" class="mt-4 rounded-md w-full h-40 object-cover">
+                <p class="text-gray-300 mt-4">Gradientiser</p>
+                <p class="text-gray-300 mt-2"><strong>Languages:</strong> HTML, CSS, JS</p>
+                <a target="_blank" href="https://nirbhayparmar.github.io/gradientiser-BgGenerator/"
+                    class="block mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md text-center transition duration-300">
+                    View Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills"
+        class="container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s">
+        <h2 class="text-3xl font-extrabold mb-6 text-white">Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div
+                class="flex items-center space-x-4 mb-4 skill-item hover:bg-gray-800 hover:blur-md transition duration-300 animate__animated animate__fadeInUp animate__delay-1s">
+                <i class="fab fa-html5 text-3xl"></i>
+                <span class="text-gray-300">HTML5</span>
+            </div>
+            <div
+                class="flex items-center space-x-4 mb-4 skill-item hover:bg-gray-800 hover:blur-md transition duration-300 animate__animated animate__fadeInUp animate__delay-2s">
+                <i class="fab fa-css3 text-3xl"></i>
+                <span class="text-gray-300">CSS3</span>
+            </div>
+            <div
+                class="flex items-center space-x-4 mb-4 skill-item hover:bg-gray-800 hover:blur-md transition duration-300 animate__animated animate__fadeInUp animate__delay-3s">
+                <i class="fab fa-js text-3xl"></i>
+                <span class="text-gray-300">JavaScript</span>
+            </div>
+            <div
+                class="flex items-center space-x-4 mb-4 skill-item hover:bg-gray-800 hover:blur-md transition duration-300 animate__animated animate__fadeInUp animate__delay-4s">
+                <i class="fab fa-bootstrap text-3xl"></i>
+                <span class="text-gray-300">Bootstrap</span>
+            </div>
+            <div
+                class="flex items-center space-x-4 mb-4 skill-item hover:bg-gray-800 hover:blur-md transition duration-300 animate__animated animate__fadeInUp animate__delay-1s">
+                <i class="fab fa-angular text-3xl"></i>
+                <span class="text-gray-300">Angular</span>
+            </div>
+            <div
+                class="flex items-center space-x-4 mb-4 skill-item hover:bg-gray-800 hover:blur-md transition duration-300 animate__animated animate__fadeInUp animate__delay-2s">
+                <i class="fab fa-git text-3xl"></i>
+                <span class="text-gray-300">Git</span>
+            </div>
+            <div
+                class="flex items-center space-x-4 mb-4 skill-item hover:bg-gray-800 hover:blur-md transition duration-300 animate__animated animate__fadeInUp animate__delay-3s">
+                <i class="fab fa-figma text-3xl"></i>
+                <span class="text-gray-300">Figma</span>
+            </div>
+            <div
+                class="flex items-center space-x-4 mb-4 skill-item hover:bg-gray-800 hover:blur-md transition duration-300 animate__animated animate__fadeInUp animate__delay-4s">
+                <i class="fab fa-python text-3xl"></i>
+                <span class="text-gray-300">Python</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="github-stats"
+        class="animated-element container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s">
+        <h2 class="text-3xl font-extrabold mb-6 text-white">GitHub Stats</h2>
+        <div class="flex justify-center items-center">
+            <img src="https://github-readme-stats.vercel.app/api?username=naman0807&show_icons=true&theme=dark"
+                alt="GitHub Stats" class="rounded-lg" />
+        </div>
+        <div class="mt-4 flex justify-center items-center">
+            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=naman0807&layout=compact&theme=dark"
+                alt="Top Languages" class="rounded-lg" />
+        </div>
+    </section>
+
+
+    <section id="contact"
+        class="container animated-element mx-auto my-8 p-8 bg-indigo-800 text-white shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s">
+        <h2 class="text-4xl font-extrabold mb-6">Get in Touch</h2>
+        <p class="text-lg mb-4">Ready to start a project or just want to say hi? Let's chat!</p>
+        <ul class="mt-4 space-y-2">
+            <li class="flex items-center">
+                <i class="fas fa-envelope text-2xl mr-2"></i>
+                <span class="text-xl">Email: <a href="mailto:parmarnaman19@gmail.com"
+                        class="underline">parmarnaman19@gmail.com</a></span>
+            </li>
+        </ul>
+        <div class="mt-8 text-center">
+            <a href="#"
+                class="bg-white text-blue-900 py-2 px-4 rounded-full transition duration-300 hover:bg-indigo-400 hover:text-white">Send
+                Message</a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+        <p class="text-sm">
+            &copy; 2023 Naman's Portfolio. All rights reserved.
+        </p>
+        <div class="flex items-center justify-center mt-4 space-x-2">
+            <a target="_blank" href="https://www.instagram.com/naman_080" class="text-gray-400 hover:text-white">
+                <i class="text-2xl px-3 fab fa-instagram"></i>
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/in/namanparmar" class="text-gray-400 hover:text-white">
+                <i class="text-2xl px-3 fab fa-linkedin-in"></i>
+            </a>
+            <a target="_blank" href="https://github.com/Naman0807" class="text-gray-400 hover:text-white">
+                <i class="text-2xl px-3 fab fa-github"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+
+        document.querySelectorAll(".nav-link").forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth",
+                });
+                document.getElementById("mobile-menu").classList.add("hidden");
+            });
+        });
+
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        document
+            .getElementById("scrollToTopBtn")
+            .addEventListener("click", function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+
+        const animatedElements = document.querySelectorAll(".animated-element");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate__fadeIn");
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        animatedElements.forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+
+</html>
