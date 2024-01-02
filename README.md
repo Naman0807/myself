@@ -9,7 +9,7 @@ This repository contains the source code for Naman Parmar's frontend developer p
 
 ## Live Site
 
-Visit the live site: [Naman Parmar - Portfolio](#)  <!-- Replace '#' with the actual link once the site is deployed -->
+Visit the live site: [Naman Parmar - Portfolio]((https://naman0807.github.io/myself/))  <!-- Replace '#' with the actual link once the site is deployed -->
 
 ## Features
 
