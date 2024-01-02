@@ -6,7 +6,8 @@
     <link rel="icon" href="https://th.bing.com/th/id/OIP.nOXT2epnygajGXU6J_LzPwHaHa?rs=1&pid=ImgDetMain"
         type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naman's Portfolio</title>
+    <title>Naman Parmar - Frontend Developer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -15,50 +16,23 @@
 
 <body class="bg-gray-900 text-white font-sans overflow-x-hidden">
 
-    <header class="bg-indigo-800 text-white text-center py-20 animate__animated animate__fadeIn animate__delay-1s">
-        <div class="container mx-auto">
-            <h1 class="text-4xl font-extrabold mb-4">Hi 👋, I'm Naman Parmar</h1>
-            <p class="text-lg">Crafting digital experiences with passion</p>
-        </div>
-    </header>
-
     <nav class="bg-gray-800 text-white p-4 animate__animated animate__fadeInDown animate__delay-0.5s">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#"
                 class="text-2xl font-bold hover:text-gray-300 hover:border-b-2 hover:border-indigo-500 transition duration-300">Naman's
                 Portfolio</a>
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-white focus:outline-none" role="button">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-            <ul class="hidden lg:flex space-x-4">
-                <li><a href="#"
-                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Home</a>
-                </li>
-                <li><a href="#portfolio"
-                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Portfolio</a>
-                </li>
-                <li><a href="#skills"
-                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Skills</a>
-                </li>
-                <li><a href="#github-stats"
-                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">GitHub
-                        Stats</a></li>
-                <li><a href="#contact"
-                        class="nav-link hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Contact</a>
-                </li>
-            </ul>
         </div>
     </nav>
 
-    <div id="mobile-menu"
-        class="lg:hidden hidden bg-gray-800 text-white p-4 animate__animated animate__fadeIn animate__delay-0.5s">
-        <ul class="flex flex-col space-y-4">
+    <button title="Toggle Navigation" id="floatingButton"
+        class="fixed right-1 top-1 m-2 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300 z-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+    </button>
+
+    <div id="linkContainer" class="fixed m-10 right-1 top-1 hidden p-4 bg-gray-800 rounded text-white z-50">
+        <ul class="pl-1 flex flex-col space-y-4">
             <li><a href="#"
                     class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Home</a>
             </li>
@@ -68,23 +42,29 @@
             <li><a href="#skills"
                     class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Skills</a>
             </li>
-            <li><a href="#github-stats"
-                    class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">GitHub
-                    Stats</a></li>
+            <li><a href="#achievements"
+                    class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Achievements</a>
+            </li>
             <li><a href="#contact"
                     class="hover:text-gray-300 transition duration-300 border-b-2 border-transparent hover:border-indigo-500">Contact</a>
             </li>
         </ul>
     </div>
 
-    <button id="scrollToTopBtn"
-        class="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full text-center transition duration-300 hidden z-50">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <div id="loading-overlay" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
+    </div>
 
+    <header class="bg-indigo-800 text-white text-center py-20 animate__animated animate__fadeIn animate__delay-1s">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-extrabold mb-4">Hi 👋, I'm Naman Parmar</h1>
+            <p class="text-lg">Crafting digital experiences with passion</p>
+        </div>
+    </header>
     <section id="about"
         class="container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s">
         <h2 class="text-3xl font-extrabold mb-6 text-white">About Me</h2>
+        <img src="/img/dp.jpg" alt="Your Name" class="rounded-full w-32 h-32 mx-auto mb-4 object-cover object-center">
         <p class="text-gray-300">
             Hello! I'm Naman Parmar, a passionate frontend developer based in India. I love creating
             interactive and visually appealing websites. With a strong foundation in HTML, CSS, and
@@ -101,13 +81,15 @@
         </p>
     </section>
 
+
+
     <section id="portfolio"
         class="container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s animated-element">
         <h2 class="text-3xl font-extrabold mb-6">My Portfolio</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
                 <h3 class="text-lg text-center font-semibold mb-2">Photographer Portfolio</h3>
-                <img src="/myself/img/1.png" alt="Photographer Portfolio Image"
+                <img src="/img/1.png" alt="Photographer Portfolio Image"
                     class="mt-4 rounded-md w-full h-40 object-cover">
                 <p class="text-gray-300 mt-4">For a photographer</p>
                 <p class="text-gray-300 mt-2"><strong>Languages:</strong> HTML, CSS</p>
@@ -117,18 +99,18 @@
                 </a>
             </div>
             <div class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
-                <h3 class="text-lg text-center font-semibold mb-2">Old Portfolio</h3>
-                <img src="/myself/img/2.png" alt="Old Portfolio Image" class="mt-4 rounded-md w-full h-40 object-cover">
-                <p class="text-gray-300 mt-4">Old portfolio</p>
-                <p class="text-gray-300 mt-2"><strong>Languages:</strong> HTML, CSS</p>
-                <a target="_blank" href="https://naman0807.github.io/portfolio/"
+                <h3 class="text-lg text-center font-semibold mb-2">CSS Magic</h3>
+                <img src="/img/4.png" alt="CSS Magic Image" class="mt-4 rounded-md w-full h-40 object-cover">
+                <p class="text-gray-300 mt-4">you can make multiple css style in it.</p>
+                <p class="text-gray-300 mt-2"><strong>Languages:</strong> HTML, CSS, JS</p>
+                <a target="_blank" href="https://naman0807.github.io/CSSMagic/"
                     class="block mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md text-center transition duration-300">
                     View Project
                 </a>
             </div>
             <div class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
                 <h3 class="text-lg text-center font-semibold mb-2">Background Generator</h3>
-                <img src="/myself/img/3.png" alt="Background Generator Image" class="mt-4 rounded-md w-full h-40 object-cover">
+                <img src="/img/3.png" alt="Background Generator Image" class="mt-4 rounded-md w-full h-40 object-cover">
                 <p class="text-gray-300 mt-4">Gradientiser</p>
                 <p class="text-gray-300 mt-2"><strong>Languages:</strong> HTML, CSS, JS</p>
                 <a target="_blank" href="https://nirbhayparmar.github.io/gradientiser-BgGenerator/"
@@ -186,18 +168,53 @@
         </div>
     </section>
 
-    <section id="github-stats"
-        class="animated-element container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s">
-        <h2 class="text-3xl font-extrabold mb-6 text-white">GitHub Stats</h2>
-        <div class="flex justify-center items-center">
-            <img src="https://github-readme-stats.vercel.app/api?username=naman0807&show_icons=true&theme=dark"
-                alt="GitHub Stats" class="rounded-lg" />
-        </div>
-        <div class="mt-4 flex justify-center items-center">
-            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=naman0807&layout=compact&theme=dark"
-                alt="Top Languages" class="rounded-lg" />
+    <section id="achievements"
+        class="container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s">
+        <h2 class="text-3xl font-extrabold mb-6 text-white">Achievements</h2>
+        <div class="flex flex-wrap -mx-4">
+            <!-- Achievement Card 1 -->
+            <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8">
+                <div
+                    class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
+                    <h3 class="text-lg text-center font-semibold mb-2">Responsive Design</h3>
+                    <img src="./img/c-1.png" alt="Achievement Image 1" class="mt-4 rounded-md w-full h-40 object-cover">
+                    <p class="text-gray-300 mt-4">This is achieved from <b>freecodecamp.org</b></p>
+                </div>
+            </div>
+
+            <!-- Achievement Card 2 -->
+            <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8">
+                <div
+                    class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
+                    <h3 class="text-lg text-center font-semibold mb-2">Internship-1</h3>
+                    <img src="./img/c-3.jpg" alt="Achievement Image 2" class="mt-4 rounded-md w-full h-40 object-cover">
+                    <p class="text-gray-300 mt-4">First Intership at <b>Charotar Gas, Anand</b></p>
+                </div>
+            </div>
+
+            <!-- Achievement Card 3 -->
+            <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8">
+                <div
+                    class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
+                    <h3 class="text-lg text-center font-semibold mb-2">Internship-2</h3>
+                    <img src="./img/c-2.jpg" alt="Achievement Image 3" class="mt-4 rounded-md w-full h-40 object-cover">
+                    <p class="text-gray-300 mt-4">Second Intership at <b>InnoBrain Technologies</b></p>
+                </div>
+            </div>
+
+            <!-- Achievement Card 4 -->
+            <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8">
+                <div
+                    class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
+                    <h3 class="text-lg text-center font-semibold mb-2">SSIP Heckthon</h3>
+                    <img src="./img/c-4.jpg" alt="Achievement Image 4" class="mt-4 rounded-md w-full h-40 object-cover">
+                    <p class="text-gray-300 mt-4">Participation certificate of <b>SSIP Heckthon</b>, Gujarat - 2023</p>
+                </div>
+            </div>
+
         </div>
     </section>
+
 
 
     <section id="contact"
@@ -207,7 +224,7 @@
         <ul class="mt-4 space-y-2">
             <li class="flex items-center">
                 <i class="fas fa-envelope text-2xl mr-2"></i>
-                <span class="text-xl">Email: <a href="mailto:parmarnaman19@gmail.com"
+                <span class="text-xl">Email:<a href="mailto:parmarnaman19@gmail.com"
                         class="underline">parmarnaman19@gmail.com</a></span>
             </li>
         </ul>
@@ -219,6 +236,10 @@
     </section>
 
     <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+        <button title="Scroll to Top" id="scrollToTopBtn"
+            class="fixed bottom-4 right-4 border hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-2xl text-center transition duration-300">
+            <i class="fas fa-arrow-up"></i>
+        </button>
         <p class="text-sm">
             &copy; 2023 Naman's Portfolio. All rights reserved.
         </p>
@@ -234,59 +255,16 @@
             </a>
         </div>
     </footer>
-
     <script>
-        document.getElementById("menu-toggle").addEventListener("click", function () {
-            document.getElementById("mobile-menu").classList.toggle("hidden");
-        });
-
-        document.querySelectorAll(".nav-link").forEach((anchor) => {
-            anchor.addEventListener("click", function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute("href")).scrollIntoView({
-                    behavior: "smooth",
-                });
-                document.getElementById("mobile-menu").classList.add("hidden");
-            });
-        });
-
-        window.onscroll = function () {
-            scrollFunction();
-        };
-
-        function scrollFunction() {
-            var scrollToTopBtn = document.getElementById("scrollToTopBtn");
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollToTopBtn.style.display = "block";
-            } else {
-                scrollToTopBtn.style.display = "none";
-            }
-        }
-
-        document
-            .getElementById("scrollToTopBtn")
-            .addEventListener("click", function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                });
-            });
-
-        const animatedElements = document.querySelectorAll(".animated-element");
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("animate__fadeIn");
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-
-        animatedElements.forEach((element) => {
-            observer.observe(element);
+        document.getElementById("floatingButton").addEventListener("click", function () {
+            var linkContainer = document.getElementById("linkContainer");
+            linkContainer.classList.toggle("hidden");
         });
     </script>
+
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
