@@ -2,7 +2,7 @@
 
 # Naman Parmar - Frontend Developer Portfolio
 
-![GitHub](https://img.shields.io/github/license/Naman0807/Frontend-Developer-Portfolio)
+![GitHub](https://img.shields.io/github/license/Naman0807/myself)
 
 ## Description
 
