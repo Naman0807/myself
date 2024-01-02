@@ -24,4 +24,4 @@ Visit the live site: [Naman Parmar - Portfolio](#)  <!-- Replace '#' with the ac
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Naman0807/Frontend-Developer-Portfolio.git
+   git clone https://github.com/Naman0807/myself.git
