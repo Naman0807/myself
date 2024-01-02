@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naman Parmar - Frontend Developer Portfolio</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox-plus-jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -110,7 +113,8 @@
             </div>
             <div class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
                 <h3 class="text-lg text-center font-semibold mb-2">Background Generator</h3>
-                <img src="./img/3.png" alt="Background Generator Image" class="mt-4 rounded-md w-full h-40 object-cover">
+                <img src="./img/3.png" alt="Background Generator Image"
+                    class="mt-4 rounded-md w-full h-40 object-cover">
                 <p class="text-gray-300 mt-4">Gradientiser</p>
                 <p class="text-gray-300 mt-2"><strong>Languages:</strong> HTML, CSS, JS</p>
                 <a target="_blank" href="https://nirbhayparmar.github.io/gradientiser-BgGenerator/"
@@ -172,12 +176,17 @@
         class="container mx-auto my-8 p-8 bg-gray-800 bg-opacity-75 shadow-lg rounded-md animate__animated animate__fadeIn animate__delay-1s">
         <h2 class="text-3xl font-extrabold mb-6 text-white">Achievements</h2>
         <div class="flex flex-wrap -mx-4">
+
             <!-- Achievement Card 1 -->
             <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8">
                 <div
                     class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
                     <h3 class="text-lg text-center font-semibold mb-2">Responsive Design</h3>
-                    <img src="./img/c-1.png" alt="Achievement Image 1" class="mt-4 rounded-md w-full h-40 object-cover">
+                    <a href="./img/c-1.png" data-lightbox="achievements"
+                        data-title="This is achieved from freecodecamp.org">
+                        <img src="./img/c-1.png" alt="Achievement Image 1"
+                            class="mt-4 rounded-md w-full h-40 object-cover" loading="lazy">
+                    </a>
                     <p class="text-gray-300 mt-4">This is achieved from <b>freecodecamp.org</b></p>
                 </div>
             </div>
@@ -187,7 +196,11 @@
                 <div
                     class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
                     <h3 class="text-lg text-center font-semibold mb-2">Internship-1</h3>
-                    <img src="./img/c-3.jpg" alt="Achievement Image 2" class="mt-4 rounded-md w-full h-40 object-cover">
+                    <a href="./img/c-3.jpg" data-lightbox="achievements"
+                        data-title="First Intership at Charotar Gas, Anand">
+                        <img src="./img/c-3.jpg" alt="Achievement Image 2"
+                            class="mt-4 rounded-md w-full h-40 object-cover" loading="lazy">
+                    </a>
                     <p class="text-gray-300 mt-4">First Intership at <b>Charotar Gas, Anand</b></p>
                 </div>
             </div>
@@ -197,7 +210,11 @@
                 <div
                     class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
                     <h3 class="text-lg text-center font-semibold mb-2">Internship-2</h3>
-                    <img src="./img/c-2.jpg" alt="Achievement Image 3" class="mt-4 rounded-md w-full h-40 object-cover">
+                    <a href="./img/c-2.jpg" data-lightbox="achievements"
+                        data-title="Second Intership at InnoBrain Technologies">
+                        <img src="./img/c-2.jpg" alt="Achievement Image 3"
+                            class="mt-4 rounded-md w-full h-40 object-cover" loading="lazy">
+                    </a>
                     <p class="text-gray-300 mt-4">Second Intership at <b>InnoBrain Technologies</b></p>
                 </div>
             </div>
@@ -207,7 +224,11 @@
                 <div
                     class="bg-gray-700 p-6 rounded-md transform hover:scale-105 transition duration-300 animated-element">
                     <h3 class="text-lg text-center font-semibold mb-2">SSIP Heckthon</h3>
-                    <img src="./img/c-4.jpg" alt="Achievement Image 4" class="mt-4 rounded-md w-full h-40 object-cover">
+                    <a href="./img/c-4.jpg" data-lightbox="achievements"
+                        data-title="Participation certificate of SSIP Heckthon, Gujarat - 2023">
+                        <img src="./img/c-4.jpg" alt="Achievement Image 4"
+                            class="mt-4 rounded-md w-full h-40 object-cover" loading="lazy">
+                    </a>
                     <p class="text-gray-300 mt-4">Participation certificate of <b>SSIP Heckthon</b>, Gujarat - 2023</p>
                 </div>
             </div>
@@ -256,9 +277,36 @@
         </div>
     </footer>
     <script>
-        document.getElementById("floatingButton").addEventListener("click", function () {
-            var linkContainer = document.getElementById("linkContainer");
-            linkContainer.classList.toggle("hidden");
+        document
+            .getElementById("floatingButton")
+            .addEventListener("click", function () {
+                var linkContainer = document.getElementById("linkContainer");
+                linkContainer.classList.toggle("hidden");
+            });
+
+        // Add an event listener to each navigation link
+        var navLinks = document.querySelectorAll("#linkContainer a");
+        navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                // Hide the linkContainer when a navigation link is clicked
+                var linkContainer = document.getElementById("linkContainer");
+                linkContainer.classList.add("hidden");
+            });
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const achievementsGallery = document.querySelectorAll('[data-lightbox="achievements"]');
+            achievementsGallery.forEach(function (element) {
+                element.setAttribute('data-lightbox', 'achievements');
+            });
+
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true
+            });
         });
     </script>
 

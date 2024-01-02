@@ -1,24 +1,5 @@
-// script.js
-
 window.addEventListener("load", function () {
 	document.getElementById("loading-overlay").classList.add("hidden");
-});
-
-document
-	.getElementById("floatingButton")
-	.addEventListener("click", function () {
-		var linkContainer = document.getElementById("linkContainer");
-		linkContainer.classList.toggle("hidden");
-	});
-
-// Add an event listener to each navigation link
-var navLinks = document.querySelectorAll("#linkContainer a");
-navLinks.forEach(function (link) {
-	link.addEventListener("click", function () {
-		// Hide the linkContainer when a navigation link is clicked
-		var linkContainer = document.getElementById("linkContainer");
-		linkContainer.classList.add("hidden");
-	});
 });
 
 window.onscroll = function () {
