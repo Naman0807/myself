@@ -6,7 +6,7 @@ This repository contains the source code for My developer portfolio. The portfol
 
 ## Live Site
 
-Visit the live site: [Naman Parmar - Portfolio]([#](https://naman0807.github.io/myself/))  <!-- Replace '#' with the actual link once the site is deployed -->
+Visit the live site: https://naman0807.github.io/myself/  <!-- Replace '#' with the actual link once the site is deployed -->
 
 ## Features
 
