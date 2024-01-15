@@ -21,4 +21,4 @@ Visit the live site: https://naman0807.github.io/myself/  <!-- Replace '#' with 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Naman0807/yself.git
+   git clone https://github.com/Naman0807/myself.git
