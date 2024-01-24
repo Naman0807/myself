@@ -1,4 +1,4 @@
-# Naman Parmar - Frontend Developer Portfolio
+# Naman Parmar - Portfolio
 
 ## Description
 
