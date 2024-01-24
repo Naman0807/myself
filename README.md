@@ -1,4 +1,4 @@
-# Naman Parmar - Frontend Developer Portfolio
+# Naman Parmar - Portfolio
 
 ## Description
 
@@ -8,17 +8,3 @@ This repository contains the source code for My developer portfolio. The portfol
 
 Visit the live site: https://naman0807.github.io/myself/
 
-## Features
-
-- Responsive and visually appealing design.
-- Project showcase with project details and live demo links.
-- Skills section highlighting proficiency in various technologies.
-- Achievements section showcasing notable accomplishments.
-- Contact section with a "Send Message" option.
-
-## Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/Naman0807/yself.git
