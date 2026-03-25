@@ -24,3 +24,1110 @@
 	max-width: 100%;
 	max-height: 100%;
 }
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--board: #141820;
+	--board2: #1c2130;
+	--chalk: #f0ede6;
+	--chalk-dim: rgba(240, 237, 230, 0.55);
+	--chalk-faint: rgba(240, 237, 230, 0.18);
+	--coral: #e8634a;
+	--cyan: #5ecfce;
+	--amber: #f0b840;
+	--lilac: #b87fc7;
+	--green: #6abf8a;
+	--ink: #141820;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: var(--board);
+	color: var(--chalk);
+	font-family: "Courier Prime", monospace;
+	overflow-x: hidden;
+	min-height: 100vh;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+	pointer-events: none;
+	z-index: 999;
+	opacity: 0.4;
+}
+
+/* ── CHALK LINES BACKGROUND ── */
+.chalk-lines {
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 0;
+	opacity: 0.04;
+	background-image: repeating-linear-gradient(
+		0deg,
+		transparent,
+		transparent 31px,
+		rgba(240, 237, 230, 0.8) 31px,
+		rgba(240, 237, 230, 0.8) 32px
+	);
+}
+
+/* ── NAV ── */
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	padding: 0.9rem 2.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: rgba(20, 24, 32, 0.88);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid var(--chalk-faint);
+}
+
+.nav-logo {
+	font-family: "Caveat", cursive;
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: var(--chalk);
+	text-decoration: none;
+	letter-spacing: 0.02em;
+}
+
+.nav-logo span {
+	color: var(--coral);
+}
+
+.nav-links {
+	display: flex;
+	gap: 2rem;
+	list-style: none;
+}
+
+.nav-links a {
+	font-family: "Caveat", cursive;
+	font-size: 1.15rem;
+	color: var(--chalk-dim);
+	text-decoration: none;
+	position: relative;
+	transition: color 0.25s;
+}
+
+.nav-links a::after {
+	content: "";
+	position: absolute;
+	bottom: -3px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: var(--coral);
+	border-radius: 2px;
+	transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+	color: var(--chalk);
+}
+.nav-links a:hover::after {
+	width: 100%;
+}
+
+/* ── HERO ── */
+#hero {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6rem 2rem 3rem;
+	overflow: hidden;
+}
+
+.hero-bg-stars {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.star {
+	position: absolute;
+	background: var(--chalk);
+	border-radius: 50%;
+	animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
+	opacity: var(--o, 0.3);
+}
+
+@keyframes twinkle {
+	from {
+		opacity: var(--o, 0.3);
+		transform: scale(1);
+	}
+	to {
+		opacity: calc(var(--o, 0.3) * 0.3);
+		transform: scale(0.7);
+	}
+}
+
+.hero-inner {
+	position: relative;
+	z-index: 2;
+	text-align: center;
+	max-width: 900px;
+}
+
+.hero-tag {
+	font-family: "Caveat", cursive;
+	font-size: 1.1rem;
+	color: var(--amber);
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	margin-bottom: 1.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+	opacity: 0;
+	animation: fadeUp 0.7s 0.3s forwards;
+}
+
+.hero-tag::before,
+.hero-tag::after {
+	content: "";
+	display: inline-block;
+	width: 40px;
+	height: 1px;
+	background: var(--amber);
+	opacity: 0.6;
+}
+
+.hero-name {
+	font-family: "Caveat", cursive;
+	font-size: clamp(3.5rem, 9vw, 7.5rem);
+	font-weight: 700;
+	line-height: 1.05;
+	color: var(--chalk);
+	opacity: 0;
+	animation: fadeUp 0.9s 0.5s forwards;
+	position: relative;
+}
+
+.hero-name .accent {
+	color: var(--coral);
+}
+.hero-name .underline-sketch {
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+}
+
+.hero-title {
+	font-family: "Courier Prime", monospace;
+	font-size: clamp(1rem, 2.5vw, 1.3rem);
+	color: var(--cyan);
+	letter-spacing: 0.08em;
+	margin-top: 1.5rem;
+	opacity: 0;
+	animation: fadeUp 0.8s 0.8s forwards;
+}
+
+.hero-desc {
+	font-family: "Caveat", cursive;
+	font-size: 1.3rem;
+	color: var(--chalk-dim);
+	max-width: 600px;
+	margin: 1.5rem auto 0;
+	line-height: 1.6;
+	opacity: 0;
+	animation: fadeUp 0.8s 1s forwards;
+}
+
+.hero-cta {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	margin-top: 2.5rem;
+	flex-wrap: wrap;
+	opacity: 0;
+	animation: fadeUp 0.8s 1.2s forwards;
+}
+
+.btn {
+	font-family: "Caveat", cursive;
+	font-size: 1.15rem;
+	padding: 0.65rem 1.8rem;
+	border-radius: 3px;
+	text-decoration: none;
+	transition: all 0.25s;
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 600;
+}
+
+.btn-primary {
+	background: var(--coral);
+	color: #fff;
+	border: 2px solid var(--coral);
+	box-shadow: 4px 4px 0 rgba(232, 99, 74, 0.3);
+}
+
+.btn-primary:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: 6px 6px 0 rgba(232, 99, 74, 0.4);
+}
+
+.btn-outline {
+	background: transparent;
+	color: var(--chalk);
+	border: 2px solid var(--chalk-dim);
+}
+
+.btn-outline:hover {
+	border-color: var(--cyan);
+	color: var(--cyan);
+	transform: translate(-2px, -2px);
+	box-shadow: 4px 4px 0 rgba(94, 207, 206, 0.2);
+}
+
+.hero-scroll-hint {
+	position: absolute;
+	bottom: 2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: "Caveat", cursive;
+	font-size: 1rem;
+	color: var(--chalk-dim);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3rem;
+	animation: bounce 2s ease-in-out infinite;
+	opacity: 0;
+	animation:
+		bounce 2s 2s ease-in-out infinite,
+		fadeUp 0.8s 2s forwards;
+}
+
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateX(-50%) translateY(0);
+	}
+	50% {
+		transform: translateX(-50%) translateY(8px);
+	}
+}
+
+/* ── SECTIONS ── */
+section {
+	position: relative;
+	z-index: 2;
+	padding: 5rem 2rem;
+}
+
+.section-inner {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.section-label {
+	font-family: "Caveat", cursive;
+	font-size: 0.95rem;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--coral);
+	margin-bottom: 0.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.section-label::before {
+	content: "";
+	display: inline-block;
+	width: 24px;
+	height: 2px;
+	background: var(--coral);
+}
+
+.section-title {
+	font-family: "Caveat", cursive;
+	font-size: clamp(2.2rem, 5vw, 3.5rem);
+	font-weight: 700;
+	color: var(--chalk);
+	line-height: 1.1;
+	margin-bottom: 3rem;
+	position: relative;
+	display: inline-block;
+}
+
+/* ── ABOUT ── */
+#about {
+	background: var(--board);
+}
+
+.about-grid {
+	display: grid;
+	grid-template-columns: 1fr 1.6fr;
+	gap: 4rem;
+	align-items: center;
+}
+
+.about-sketch {
+	position: relative;
+}
+
+.about-frame {
+	position: relative;
+	display: inline-block;
+}
+
+.about-frame::before {
+	content: "";
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	right: -12px;
+	bottom: -12px;
+	border: 2px dashed var(--chalk-faint);
+	border-radius: 4px;
+}
+
+.about-avatar-box {
+	width: 100%;
+	aspect-ratio: 1;
+	max-width: 320px;
+	border-radius: 4px;
+	background: var(--board2);
+	border: 2px solid var(--chalk-faint);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+}
+
+.avatar-initials {
+	font-family: "Caveat", cursive;
+	font-size: 6rem;
+	font-weight: 700;
+	color: var(--chalk);
+	opacity: 0.2;
+	letter-spacing: -0.05em;
+}
+
+.avatar-chalk-portrait {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sticky-note {
+	position: absolute;
+	background: var(--amber);
+	color: var(--ink);
+	font-family: "Caveat", cursive;
+	font-size: 1rem;
+	padding: 0.6rem 0.9rem;
+	transform: rotate(-3deg);
+	box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+	max-width: 150px;
+	line-height: 1.4;
+	z-index: 3;
+}
+
+.sticky-note-2 {
+	background: var(--cyan);
+	transform: rotate(2.5deg);
+	font-size: 0.9rem;
+}
+
+.about-text p {
+	font-size: 1.05rem;
+	line-height: 1.9;
+	color: var(--chalk-dim);
+	margin-bottom: 1.2rem;
+}
+
+.about-text p strong {
+	color: var(--chalk);
+	font-style: italic;
+}
+
+.about-annotation {
+	font-family: "Caveat", cursive;
+	font-size: 1.2rem;
+	color: var(--amber);
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-top: 0.5rem;
+}
+
+.about-links {
+	display: flex;
+	gap: 0.8rem;
+	flex-wrap: wrap;
+	margin-top: 1.8rem;
+}
+
+.link-badge {
+	font-family: "Caveat", cursive;
+	font-size: 1.1rem;
+	color: var(--chalk-dim);
+	border: 1.5px solid var(--chalk-faint);
+	padding: 0.35rem 1rem;
+	border-radius: 2px;
+	text-decoration: none;
+	transition: all 0.2s;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.link-badge:hover {
+	color: var(--cyan);
+	border-color: var(--cyan);
+	transform: translateY(-2px);
+	background: rgba(94, 207, 206, 0.06);
+}
+
+/* ── PROJECTS ── */
+#projects {
+	background: var(--board2);
+}
+
+.projects-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 2rem;
+}
+
+.project-card {
+	background: var(--board);
+	border: 1.5px solid var(--chalk-faint);
+	border-radius: 4px;
+	padding: 1.8rem;
+	position: relative;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+	overflow: hidden;
+}
+
+.project-card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4px;
+	height: 100%;
+	background: var(--accent-color, var(--coral));
+}
+
+.project-card:hover {
+	transform: translateY(-5px) rotate(0.3deg);
+	box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+	border-color: var(--accent-color, var(--coral));
+}
+
+.project-card .corner-fold {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 28px 28px 0;
+	border-color: transparent var(--board2) transparent transparent;
+	transition: border-width 0.3s;
+}
+
+.project-card:hover .corner-fold {
+	border-width: 0 36px 36px 0;
+}
+
+.project-num {
+	font-family: "Caveat", cursive;
+	font-size: 3.5rem;
+	font-weight: 700;
+	color: var(--accent-color, var(--coral));
+	opacity: 0.15;
+	position: absolute;
+	top: 0.5rem;
+	right: 2rem;
+	line-height: 1;
+}
+
+.project-type {
+	font-family: "Caveat", cursive;
+	font-size: 0.85rem;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: var(--accent-color, var(--coral));
+	margin-bottom: 0.6rem;
+}
+
+.project-name {
+	font-family: "Caveat", cursive;
+	font-size: 1.55rem;
+	font-weight: 700;
+	color: var(--chalk);
+	margin-bottom: 0.8rem;
+	line-height: 1.2;
+}
+
+.project-desc {
+	font-size: 0.9rem;
+	color: var(--chalk-dim);
+	line-height: 1.7;
+	margin-bottom: 1.2rem;
+}
+
+.project-metric {
+	font-family: "Caveat", cursive;
+	font-size: 1rem;
+	color: var(--amber);
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+}
+
+.stack-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin-bottom: 1.2rem;
+}
+
+.tag {
+	font-size: 0.72rem;
+	font-family: "Courier Prime", monospace;
+	padding: 0.2rem 0.55rem;
+	border-radius: 2px;
+	background: var(--chalk-faint);
+	color: var(--chalk-dim);
+	letter-spacing: 0.05em;
+}
+
+.project-link {
+	font-family: "Caveat", cursive;
+	font-size: 1rem;
+	color: var(--chalk-dim);
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	transition: color 0.2s;
+	border-bottom: 1px dashed var(--chalk-faint);
+	padding-bottom: 1px;
+}
+
+.project-link:hover {
+	color: var(--accent-color, var(--coral));
+	border-color: var(--accent-color, var(--coral));
+}
+
+/* ── SKILLS ── */
+#skills {
+	background: var(--board);
+}
+
+.skills-layout {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3rem;
+	align-items: start;
+}
+
+.skill-group {
+	margin-bottom: 2.5rem;
+}
+
+.skill-group-title {
+	font-family: "Caveat", cursive;
+	font-size: 1.3rem;
+	color: var(--amber);
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.skill-group-title::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: linear-gradient(to right, var(--amber), transparent);
+	opacity: 0.4;
+}
+
+.skill-pill-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+}
+
+.skill-pill {
+	font-family: "Caveat", cursive;
+	font-size: 1.05rem;
+	padding: 0.4rem 1rem;
+	border-radius: 3px;
+	border: 1.5px solid;
+	position: relative;
+	cursor: default;
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s;
+}
+
+.skill-pill:hover {
+	transform: rotate(-1.5deg) scale(1.08);
+	box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.sp-ai {
+	border-color: var(--coral);
+	color: var(--coral);
+}
+.sp-ai:hover {
+	background: rgba(232, 99, 74, 0.1);
+}
+.sp-lang {
+	border-color: var(--cyan);
+	color: var(--cyan);
+}
+.sp-lang:hover {
+	background: rgba(94, 207, 206, 0.1);
+}
+.sp-frame {
+	border-color: var(--lilac);
+	color: var(--lilac);
+}
+.sp-frame:hover {
+	background: rgba(184, 127, 199, 0.1);
+}
+.sp-tool {
+	border-color: var(--green);
+	color: var(--green);
+}
+.sp-tool:hover {
+	background: rgba(106, 191, 138, 0.1);
+}
+
+/* Constellation SVG */
+.constellation-wrap {
+	position: relative;
+	height: 380px;
+}
+
+.constellation-wrap svg {
+	width: 100%;
+	height: 100%;
+}
+
+/* ── EXPERIENCE ── */
+#experience {
+	background: var(--board2);
+}
+
+.timeline {
+	position: relative;
+	padding-left: 2.5rem;
+}
+
+.timeline::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 8px;
+	bottom: 0;
+	width: 2px;
+	background: repeating-linear-gradient(
+		to bottom,
+		var(--chalk-faint) 0px,
+		var(--chalk-faint) 8px,
+		transparent 8px,
+		transparent 14px
+	);
+}
+
+.tl-item {
+	position: relative;
+	margin-bottom: 3rem;
+}
+
+.tl-dot {
+	position: absolute;
+	left: -2.75rem;
+	top: 4px;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: var(--board2);
+	border: 2px solid var(--coral);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.tl-dot::after {
+	content: "";
+	width: 5px;
+	height: 5px;
+	background: var(--coral);
+	border-radius: 50%;
+}
+
+.tl-date {
+	font-family: "Caveat", cursive;
+	font-size: 0.9rem;
+	color: var(--amber);
+	letter-spacing: 0.1em;
+	margin-bottom: 0.3rem;
+}
+
+.tl-role {
+	font-family: "Caveat", cursive;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--chalk);
+}
+
+.tl-company {
+	font-family: "Caveat", cursive;
+	font-size: 1.1rem;
+	color: var(--cyan);
+	margin-bottom: 0.8rem;
+}
+
+.tl-bullets {
+	list-style: none;
+	padding: 0;
+}
+
+.tl-bullets li {
+	font-size: 0.95rem;
+	color: var(--chalk-dim);
+	line-height: 1.75;
+	padding-left: 1.2rem;
+	position: relative;
+}
+
+.tl-bullets li::before {
+	content: "→";
+	position: absolute;
+	left: 0;
+	color: var(--coral);
+	font-size: 0.85rem;
+}
+
+/* ── ACHIEVEMENTS ── */
+#achievements {
+	background: var(--board);
+}
+
+.ach-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	gap: 1.8rem;
+}
+
+.ach-card {
+	background: var(--board2);
+	border: 1.5px solid var(--chalk-faint);
+	border-radius: 4px;
+	padding: 1.6rem;
+	position: relative;
+	transition: all 0.25s;
+}
+
+.ach-card:hover {
+	transform: translateY(-4px) rotate(-0.5deg);
+	border-color: var(--amber);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.ach-icon {
+	font-size: 2rem;
+	margin-bottom: 0.8rem;
+}
+
+.ach-title {
+	font-family: "Caveat", cursive;
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: var(--chalk);
+	margin-bottom: 0.4rem;
+}
+
+.ach-body {
+	font-size: 0.88rem;
+	color: var(--chalk-dim);
+	line-height: 1.65;
+}
+
+.ach-badge {
+	position: absolute;
+	top: -10px;
+	right: 12px;
+	background: var(--amber);
+	color: var(--ink);
+	font-family: "Caveat", cursive;
+	font-size: 0.75rem;
+	font-weight: 700;
+	padding: 0.15rem 0.6rem;
+	border-radius: 2px;
+	letter-spacing: 0.08em;
+	transform: rotate(1.5deg);
+}
+
+/* ── CONTACT ── */
+#contact {
+	background: var(--board2);
+}
+
+.contact-box {
+	background: var(--board);
+	border: 1.5px solid var(--chalk-faint);
+	border-radius: 6px;
+	padding: 3.5rem;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.contact-box::before {
+	content: "";
+	position: absolute;
+	inset: -1px;
+	border-radius: 6px;
+	padding: 1.5px;
+	background: linear-gradient(135deg, var(--coral), var(--cyan), var(--lilac));
+	pointer-events: none; /* Lets clicks pass through the border layer */
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+	-webkit-mask-composite: destination-out;
+	mask-composite: exclude;
+}
+
+.contact-big {
+	font-family: "Caveat", cursive;
+	font-size: clamp(2rem, 5vw, 3.5rem);
+	font-weight: 700;
+	color: var(--chalk);
+	margin-bottom: 1rem;
+	line-height: 1.15;
+}
+
+.contact-sub {
+	font-family: "Caveat", cursive;
+	font-size: 1.2rem;
+	color: var(--chalk-dim);
+	margin-bottom: 2.5rem;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.contact-email {
+	font-family: "Courier Prime", monospace;
+	font-size: 1.05rem;
+	color: var(--cyan);
+	text-decoration: none;
+	display: inline-block;
+	padding: 0.8rem 2rem;
+	border: 1.5px solid var(--cyan);
+	border-radius: 3px;
+	transition: all 0.25s;
+	margin-bottom: 2rem;
+}
+
+.contact-email:hover {
+	background: rgba(94, 207, 206, 0.1);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(94, 207, 206, 0.2);
+}
+
+.social-row {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 1.5rem;
+}
+
+.social-btn {
+	font-family: "Caveat", cursive;
+	font-size: 1.1rem;
+	color: var(--chalk-dim);
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.5rem 1.2rem;
+	border: 1.5px solid var(--chalk-faint);
+	border-radius: 3px;
+	transition: all 0.22s;
+}
+
+.social-btn:hover {
+	color: var(--chalk);
+	border-color: var(--chalk-dim);
+	transform: translateY(-2px);
+	background: var(--chalk-faint);
+}
+
+/* ── FOOTER ── */
+footer {
+	background: var(--board);
+	border-top: 1px solid var(--chalk-faint);
+	text-align: center;
+	padding: 2rem;
+	font-family: "Caveat", cursive;
+	font-size: 1.05rem;
+	color: var(--chalk-dim);
+	position: relative;
+	z-index: 2;
+}
+
+footer span {
+	color: var(--coral);
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+	opacity: 0;
+	transform: translateY(30px);
+	transition:
+		opacity 0.7s ease,
+		transform 0.7s ease;
+}
+.reveal.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* ── BACK TO TOP ── */
+#back-top {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	background: var(--board2);
+	border: 1.5px solid var(--chalk-faint);
+	color: var(--chalk-dim);
+	font-family: "Caveat", cursive;
+	font-size: 1rem;
+	padding: 0.55rem 0.9rem;
+	border-radius: 3px;
+	cursor: pointer;
+	text-decoration: none;
+	opacity: 0;
+	transition: all 0.3s;
+	z-index: 90;
+}
+
+#back-top.show {
+	opacity: 1;
+}
+#back-top:hover {
+	color: var(--coral);
+	border-color: var(--coral);
+	transform: translateY(-3px);
+}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(22px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+	.about-grid {
+		grid-template-columns: 1fr;
+	}
+	.skills-layout {
+		grid-template-columns: 1fr;
+	}
+	.nav-links {
+		display: none;
+	}
+	.contact-box {
+		padding: 2rem 1.5rem;
+	}
+}
+
+/* Chalk drawing effect border */
+.chalk-border {
+	position: relative;
+}
+.chalk-border::after {
+	content: "";
+	position: absolute;
+	inset: -1px;
+	border-radius: inherit;
+	background: transparent;
+	box-shadow: 0 0 0 1.5px var(--chalk-faint);
+	pointer-events: none;
+}
+
+/* Highlight marker effect */
+.marker {
+	position: relative;
+	display: inline;
+}
+.marker::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: -2px;
+	right: -2px;
+	height: 40%;
+	background: var(--marker-color, rgba(240, 184, 64, 0.25));
+	z-index: -1;
+	border-radius: 2px;
+}
+
+/* Hand-drawn underline SVG */
+.squiggle {
+	display: block;
+	width: 100%;
+	height: 12px;
+	margin-top: 4px;
+}
+.contact-email,
+.social-btn,
+.contact-sub,
+.contact-big {
+	position: relative;
+	z-index: 5;
+}
