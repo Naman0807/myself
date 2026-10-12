@@ -1,7 +1,7 @@
 /* ============================================================================
-   Naman Parmar — AI Engineer
+   Naman Parmar - AI Engineer
    The only JS on the page: highlights the active section in the left rail.
-   Rail is CSS-hidden below 1440px, so this is purely progressive enhancement —
+   Rail is CSS-hidden below 1440px, so this is purely progressive enhancement -
    the site is fully functional with JS disabled.
    ========================================================================== */
 (function () {

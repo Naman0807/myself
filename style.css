@@ -1,10 +1,10 @@
 /* ============================================================================
-   Naman Parmar — AI Engineer
+   Naman Parmar - AI Engineer
    Swiss / International Typographic System
    ----------------------------------------------------------------------------
    Design rules, do not break casually:
      · 12-column grid, mathematical spacing scale only (no arbitrary px)
-     · Two typefaces max — Inter (prose) + JetBrains Mono (data/labels)
+     · Two typefaces max - Inter (prose) + JetBrains Mono (data/labels)
      · Hierarchy from size / weight / space. Never from adding colour or fonts.
      · Zero border-radius. Zero box-shadow. Depth comes from inversion.
      · ONE accent (--accent). If it appears more than ~10 times, it stops working.
@@ -20,7 +20,7 @@
   --rule:#E2E1DA;
   --accent:#D9452B;
 
-  /* spacing scale — 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 / 144 */
+  /* spacing scale - 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 / 144 */
   --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:32px;
   --s6:48px; --s7:64px; --s8:96px; --s9:144px;
 
@@ -42,13 +42,13 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  font-feature-settings:"tnum" 1; /* tabular figures — spec tables must align */
+  font-feature-settings:"tnum" 1; /* tabular figures - spec tables must align */
 }
 
 a{color:inherit}
 h1,h2,h3,h4{text-wrap:balance}
 
-/* focus — visible, square, accent. Never remove. */
+/* focus - visible, square, accent. Never remove. */
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
 .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);
@@ -173,7 +173,7 @@ section{padding:var(--s9) 0}
 .pitem ul{list-style:none}
 .pitem li{color:var(--dim);font-size:var(--t-s);font-weight:300;line-height:1.7;
   padding-left:var(--s3);position:relative}
-.pitem li::before{content:"—";position:absolute;left:0;color:var(--accent)}
+.pitem li::before{content:"-";position:absolute;left:0;color:var(--accent)}
 
 /* ── STACK ───────────────────────────────────────────────────────────────── */
 .stack div{display:grid;grid-template-columns:180px 1fr;gap:var(--s4);padding:var(--s4) 0;
@@ -235,7 +235,7 @@ footer .in{display:flex;justify-content:space-between;color:var(--dim);flex-wrap
   .stack div{grid-template-columns:1fr;gap:var(--s2)}
   .sh{flex-direction:column;align-items:flex-start;gap:var(--s3)}
   .sh .note{text-align:left}
-  /* no hover on touch — inversion would stick after a tap */
+  /* no hover on touch - inversion would stick after a tap */
   .proj:hover{background:transparent;color:inherit}
   .proj:hover .p-num,.proj:hover .p-desc,.proj:hover .spec dt{color:var(--dim)}
   .proj:hover .spec div{border-color:var(--rule)}
@@ -252,7 +252,7 @@ footer .in{display:flex;justify-content:space-between;color:var(--dim);flex-wrap
 }
 
 /* Visually hidden but read by crawlers and screen readers.
-   Used so the <h1> carries "Naman Parmar — AI Engineer" while the
+   Used so the <h1> carries "Naman Parmar - AI Engineer" while the
    poster type stays purely visual. Do not change to display:none. */
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
