@@ -1,41 +1,56 @@
 /* ============================================================================
-   Naman Parmar - AI Engineer
-   The only JS on the page: highlights the active section in the left rail.
-   Rail is CSS-hidden below 1440px, so this is purely progressive enhancement -
-   the site is fully functional with JS disabled.
+   Naman Parmar | AI Engineer  (v2)
+   Small, optional JS. The site is fully usable with JS disabled.
+   1. active section in the top bar and the left rail
+   2. reading-progress bar
+   3. copy-email button
    ========================================================================== */
 (function () {
   "use strict";
 
-  var railLinks = Array.prototype.slice.call(document.querySelectorAll(".rail a"));
-  if (!railLinks.length) return;
-
-  var sections = railLinks
-    .map(function (a) { return document.getElementById(a.dataset.s); })
+  var links = Array.prototype.slice.call(document.querySelectorAll("[data-s]"));
+  var ids = [];
+  links.forEach(function (a) { if (ids.indexOf(a.dataset.s) < 0) ids.push(a.dataset.s); });
+  var sections = ids
+    .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
-  if (!sections.length) return;
-
+  var bar = document.querySelector(".progress");
   var queued = false;
 
-  function mark() {
+  function update() {
     queued = false;
-    var current = "";
+    var y = window.scrollY, current = "";
     for (var i = 0; i < sections.length; i++) {
-      if (window.scrollY >= sections[i].offsetTop - 160) current = sections[i].id;
+      if (y >= sections[i].offsetTop - 160) current = sections[i].id;
     }
-    railLinks.forEach(function (a) {
-      a.classList.toggle("on", a.dataset.s === current);
-    });
+    links.forEach(function (a) { a.classList.toggle("on", a.dataset.s === current); });
+    if (bar) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = "scaleX(" + (h > 0 ? Math.min(1, y / h) : 0) + ")";
+    }
   }
 
-  // rAF-throttled: one layout read per frame, never per scroll event
-  window.addEventListener("scroll", function () {
-    if (!queued) { queued = true; requestAnimationFrame(mark); }
-  }, { passive: true });
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+  window.addEventListener("scroll", queue, { passive: true });
+  window.addEventListener("resize", queue, { passive: true });
+  update();
 
-  window.addEventListener("resize", function () {
-    if (!queued) { queued = true; requestAnimationFrame(mark); }
-  }, { passive: true });
-
-  mark();
+  // copy email
+  var status = document.querySelector(".status");
+  function say(msg) {
+    if (!status) return;
+    status.textContent = msg;
+    setTimeout(function () { status.textContent = ""; }, 2200);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-copy]"), function (b) {
+    b.addEventListener("click", function () {
+      var text = b.getAttribute("data-copy");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(
+          function () { say("Copied"); },
+          function () { say(text); }
+        );
+      } else { say(text); }
+    });
+  });
 })();

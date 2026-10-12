@@ -256,3 +256,115 @@ footer .in{display:flex;justify-content:space-between;color:var(--dim);flex-wrap
    poster type stays purely visual. Do not change to display:none. */
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ============================================================================
+   v2 additions. Loaded AFTER style.css. Same tokens, same rules:
+   zero radius, zero shadow, one accent, hierarchy from size and space.
+   ========================================================================== */
+
+html{scroll-padding-top:76px}
+section,.contact{scroll-margin-top:76px}
+
+/* reading progress: 2px, accent, the only moving thing besides hover */
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--accent);
+  transform-origin:0 50%;transform:scaleX(0);z-index:60;pointer-events:none}
+
+/* topbar: active section + resume as the one persistent action */
+.topbar .right{display:flex;align-items:center;gap:var(--s4)}
+.topbar ul a{position:relative;padding:4px 0}
+.topbar ul a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;
+  background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .25s}
+.topbar ul a.on{color:var(--ink)}
+.topbar ul a.on::after{transform:scaleX(1)}
+
+/* buttons: square, mono, invert on hover (same grammar as project rows) */
+.btn{display:inline-flex;align-items:center;gap:var(--s2);
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;font-size:var(--t-xs);
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  padding:.8rem 1.1rem;border:1px solid var(--ink);color:var(--ink);background:transparent;
+  transition:background .2s,color .2s,border-color .2s;cursor:pointer;line-height:1.2}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn--solid{background:var(--ink);color:var(--paper)}
+.btn--solid:hover{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.topbar .btn{padding:.45rem .75rem}
+
+/* hero: one plain-language line and three clear actions */
+.lede-col{grid-column:span 6;align-self:end}
+.lede-col .lede{max-width:40ch;margin-bottom:var(--s4)}
+.lede-sub{color:var(--dim);font-size:var(--t-b);max-width:46ch;margin-bottom:var(--s5)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:var(--s3)}
+
+/* case study block inside each project row */
+.case{margin-top:var(--s4);max-width:54ch;border-top:1px solid var(--rule)}
+.case div{display:grid;grid-template-columns:76px 1fr;gap:var(--s3);padding:.6rem 0;
+  border-bottom:1px solid var(--rule);transition:border-color .3s}
+.case dt{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--t-xs);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding-top:3px}
+.case dd{font-size:var(--t-s);line-height:1.55;color:var(--dim);transition:color .3s}
+.proj:hover .case dd,.proj:focus-within .case dd{color:rgba(250,250,247,.8)}
+.proj:hover .case div,.proj:focus-within .case div{border-color:rgba(250,250,247,.16)}
+.proj:hover .case,.proj:focus-within .case{border-color:rgba(250,250,247,.16)}
+.case + .p-link{margin-top:var(--s4)}
+
+/* request-path diagram (project 001) */
+.p-fig{grid-column:2/-1;margin-top:var(--s5)}
+.flow{width:100%;height:auto;display:block;overflow:visible}
+.flow rect{fill:none;stroke:currentColor;stroke-width:1}
+.flow line{stroke:currentColor;stroke-width:1}
+.flow .loop{stroke:var(--accent);stroke-dasharray:4 4}
+.flow text{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.08em;fill:currentColor;text-transform:uppercase}
+.flow text.dim{opacity:.6;text-transform:none}
+.flow text.acc-t{fill:var(--accent);text-transform:none}
+.flow-steps{display:none;list-style:decimal;padding-left:var(--s5);color:var(--dim);
+  font-size:var(--t-s);line-height:1.8;text-transform:none;letter-spacing:.02em}
+.p-fig figcaption{color:var(--dim);font-size:var(--t-s);margin-top:var(--s3);max-width:68ch}
+.proj:hover .p-fig figcaption,.proj:focus-within .p-fig figcaption,
+.proj:hover .flow-steps,.proj:focus-within .flow-steps{color:rgba(250,250,247,.8)}
+
+/* contact: copy email */
+.mailrow{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
+.copy{padding:.5rem .8rem}
+.status{color:var(--accent);min-width:8ch}
+
+@media(max-width:1080px){
+  .lede-col{grid-column:1/-1}
+}
+
+@media(max-width:820px){
+  .lede-col{grid-column:auto}
+  .hero-cta .btn{flex:1 1 auto;justify-content:center}
+  .topbar .right{gap:var(--s3)}
+  .topbar .btn{padding:.4rem .6rem}
+
+  /* the hero table and spec tables must wrap, not clip, on a phone */
+  .hero-meta dd,.spec dd{white-space:normal}
+
+  /* diagram becomes a numbered list on a phone */
+  .p-fig{grid-column:auto}
+  .flow{display:none}
+  .flow-steps{display:block}
+
+  /* no hover inversion on touch */
+  .proj:hover .case dd,.proj:hover .p-fig figcaption,.proj:hover .flow-steps{color:var(--dim)}
+  .proj:hover .case,.proj:hover .case div{border-color:var(--rule)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .progress{transition:none}
+}
+
+/* ── SPEC TOOLTIPS: hover, keyboard focus or tap a label for its definition ── */
+.spec dt{position:relative;cursor:help}
+.spec dt:focus{outline:none}
+.spec dt:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.spec dt .lbl{border-bottom:1px dotted currentColor;padding-bottom:1px}
+.tip-text{position:absolute;left:0;top:calc(100% + 8px);z-index:20;
+  width:max-content;max-width:min(300px,calc(100vw - 48px));
+  padding:.6rem .75rem;background:var(--paper);color:var(--ink);border:1px solid var(--ink);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:var(--t-s);
+  font-weight:400;letter-spacing:0;line-height:1.5;text-transform:none;text-align:left;
+  white-space:normal;visibility:hidden;opacity:0;transform:translateY(-2px);pointer-events:none;
+  transition:opacity .12s,transform .12s,visibility 0s .12s}
+.spec dt:hover .tip-text,.spec dt:focus .tip-text{
+  visibility:visible;opacity:1;transform:none;transition-delay:0s}

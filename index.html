@@ -89,16 +89,20 @@
 </nav>
 
 <!-- TOP BAR -->
+<div class="progress" aria-hidden="true"></div>
 <nav class="topbar" aria-label="Primary">
   <div class="in">
     <a class="nm" href="#top">Naman Parmar</a>
     <ul class="mono">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#path">Path</a></li>
-      <li><a href="#stack">Stack</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#work" data-s="work">Work</a></li>
+      <li><a href="#path" data-s="path">Path</a></li>
+      <li><a href="#stack" data-s="stack">Stack</a></li>
+      <li><a href="#contact" data-s="contact">Contact</a></li>
     </ul>
-    <span class="mono avail">Available</span>
+    <div class="right">
+      <span class="mono avail">Available</span>
+      <a class="btn" href="./NamanParmar_Resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute; &darr;</a>
+    </div>
   </div>
 </nav>
 
@@ -108,7 +112,15 @@
     <p class="eyebrow mono">AI Engineer · Anand, India · 2026</p>
     <h1><span class="sr-only">Naman Parmar | AI Engineer</span><span aria-hidden="true">AI<br>ENGINEER<span class="thin">.</span></span></h1>
     <div class="grid12">
-      <p class="lede">I build language-model systems that ship, and the <b>guardrails and evals</b> that keep them honest.</p>
+      <div class="lede-col">
+        <p class="lede">I build language-model systems that ship, and the <b>guardrails and evals</b> that keep them honest.</p>
+        <p class="lede-sub">Production LLM agents for healthcare. Gujarati language models trained from scratch.</p>
+        <div class="hero-cta">
+          <a class="btn btn--solid" href="#work">See the work &darr;</a>
+          <a class="btn" href="./NamanParmar_Resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute; (PDF)</a>
+          <a class="btn" href="mailto:parmarnaman19@gmail.com">Email me</a>
+        </div>
+      </div>
       <div class="hero-meta">
         <dl>
           <div><dt>Now</dt><dd>AI-First Developer, GroovyWeb</dd></div>
@@ -124,10 +136,10 @@
   <div class="band">
     <div class="wrap">
       <div class="in">
-        <div class="stat"><p class="n">23/23</p><p class="l">Behavior eval<br>passing, live model</p></div>
-        <div class="stat"><p class="n">52M</p><p class="l">Parameters trained<br>from scratch</p></div>
+        <div class="stat"><p class="n">23/23</p><p class="l">Behavior tests passing<br>on the live AI model</p></div>
+        <div class="stat"><p class="n">52M</p><p class="l">Parameters in a Gujarati<br>model, trained from scratch</p></div>
         <div class="stat"><p class="n">100%</p><p class="l">Branch coverage<br>on shipped code</p></div>
-        <div class="stat"><p class="n">295+</p><p class="l">Real users on<br>a side product</p></div>
+        <div class="stat"><p class="n">295+</p><p class="l">Users of a side product,<br>no paid marketing</p></div>
       </div>
     </div>
   </div>
@@ -140,7 +152,7 @@
   <div class="wrap">
     <div class="sh">
       <h2>WORK</h2>
-      <p class="note">Six systems. Every number below is measured, not estimated.</p>
+      <p class="note">Six systems. Every number below is measured, not estimated. Hover or tap a label for its definition.</p>
     </div>
 
     <article class="proj">
@@ -148,18 +160,66 @@
       <div class="p-main">
         <span class="p-tag">Production</span>
         <h3>Patient AI Assistant</h3>
-        <p class="p-desc">Tool-calling agent shipped inside a HIPAA-regulated patient platform for a US healthcare client. Seven typed function tools, a multi-turn loop capped to bound cost, prompt guardrails on both sides of the model call, and per-user isolation enforced from the server-derived session.</p>
+        <dl class="case">
+          <div><dt>Problem</dt><dd>An in-app assistant had to answer from one patient's own records, refuse medical advice, and never reach another patient's data.</dd></div>
+          <div><dt>Built</dt><dd>A tool-calling agent on Azure OpenAI (GPT-6 Luna): 7 typed tools, a turn-capped loop with memory, guardrails before and after the model, identity taken from the server session.</dd></div>
+          <div><dt>Result</dt><dd>23/23 behavior evals pass on the live model, backed by 80 unit tests and 100% branch coverage. CI runs a deterministic stub with no network calls.</dd></div>
+        </dl>
         <span class="p-link p-link--static">Client work · details on request</span>
       </div>
       <dl class="spec">
-        <div><dt>Model</dt><dd>GPT-6 Luna · Azure</dd></div>
-        <div><dt>Tools</dt><dd>7 typed functions</dd></div>
-        <div><dt>Eval</dt><dd>23 / 23 passing</dd></div>
-        <div><dt>Tests</dt><dd>80 unit</dd></div>
-        <div><dt>Coverage</dt><dd>100% branch</dd></div>
-        <div><dt>Guardrails</dt><dd>pre + post filter</dd></div>
-        <div><dt>Isolation</dt><dd>server-derived</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-001-0"><span class="lbl">Model</span><span class="tip-text" role="tooltip" id="tip-001-0">The language model behind the assistant: GPT-6 Luna, served through Azure OpenAI.</span></dt><dd>GPT-6 Luna · Azure</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-001-1"><span class="lbl">Tools</span><span class="tip-text" role="tooltip" id="tip-001-1">Typed functions the model is allowed to call, each with a fixed input schema. Seven of them read the patient's own records, such as visits, medications, consent status, rewards and saved studies.</span></dt><dd>7 typed functions</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-001-2"><span class="lbl">Eval</span><span class="tip-text" role="tooltip" id="tip-001-2">23 curated prompts sent to the live model. Each one checks in-domain answering, off-domain refusal or medical-advice refusal. All 23 pass.</span></dt><dd>23 / 23 passing</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-001-3"><span class="lbl">Tests</span><span class="tip-text" role="tooltip" id="tip-001-3">80 unit tests over the agent loop, the guardrails and the tools.</span></dt><dd>80 unit</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-001-4"><span class="lbl">Coverage</span><span class="tip-text" role="tooltip" id="tip-001-4">Tests exercise every branch of the shipped code. Coverage is held at 100% as a gate.</span></dt><dd>100% branch</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-001-5"><span class="lbl">Guardrails</span><span class="tip-text" role="tooltip" id="tip-001-5">Intent classification, a filter before the model call and a filter after it. They refuse medical advice and off-domain requests.</span></dt><dd>pre + post filter</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-001-6"><span class="lbl">Isolation</span><span class="tip-text" role="tooltip" id="tip-001-6">Each tool takes the patient from the server session. The client never supplies an ID, so no prompt can reach another patient's data.</span></dt><dd>server-derived</dd></div>
       </dl>
+      <figure class="p-fig">
+        <svg class="flow" viewBox="0 0 800 210" role="img" aria-label="Request path of the patient assistant: user message, pre-filter, model, post-filter, answer. The model calls 7 typed tools in a capped loop. Patient identity comes from the server session.">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" stroke="none"/></marker>
+            <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#D9452B" stroke="none"/></marker>
+          </defs>
+          <rect x="0.5"   y="20.5" width="131" height="63"/>
+          <rect x="167.5" y="20.5" width="131" height="63"/>
+          <rect x="334.5" y="20.5" width="131" height="63"/>
+          <rect x="501.5" y="20.5" width="131" height="63"/>
+          <rect x="668.5" y="20.5" width="131" height="63"/>
+          <line x1="132" y1="52" x2="166" y2="52" marker-end="url(#ah)"/>
+          <line x1="299" y1="52" x2="333" y2="52" marker-end="url(#ah)"/>
+          <line x1="466" y1="52" x2="500" y2="52" marker-end="url(#ah)"/>
+          <line x1="633" y1="52" x2="667" y2="52" marker-end="url(#ah)"/>
+          <text x="66"  y="48" text-anchor="middle">USER</text>
+          <text x="66"  y="65" text-anchor="middle" class="dim">MESSAGE</text>
+          <text x="233" y="48" text-anchor="middle">PRE-FILTER</text>
+          <text x="233" y="65" text-anchor="middle" class="dim">intent + scope</text>
+          <text x="400" y="48" text-anchor="middle">MODEL</text>
+          <text x="400" y="65" text-anchor="middle" class="dim">GPT-6 Luna</text>
+          <text x="567" y="48" text-anchor="middle">POST-FILTER</text>
+          <text x="567" y="65" text-anchor="middle" class="dim">advice + scope</text>
+          <text x="734" y="48" text-anchor="middle">ANSWER</text>
+          <text x="734" y="65" text-anchor="middle" class="dim">to the patient</text>
+          <line class="loop" x1="400" y1="85" x2="400" y2="129" marker-start="url(#aa)" marker-end="url(#aa)"/>
+          <text x="412" y="111" class="acc-t">capped loop</text>
+          <rect x="334.5" y="130.5" width="131" height="63"/>
+          <text x="400" y="158" text-anchor="middle">7 TYPED TOOLS</text>
+          <text x="400" y="175" text-anchor="middle" class="dim">own records only</text>
+          <text x="0" y="158" class="dim">turn cap bounds</text>
+          <text x="0" y="175" class="dim">cost per conversation</text>
+          <text x="488" y="158" class="acc-t">identity comes from the</text>
+          <text x="488" y="175" class="acc-t">server session, never the client</text>
+        </svg>
+        <ol class="flow-steps mono">
+          <li>User message</li>
+          <li>Pre-filter: intent and scope</li>
+          <li>Model (GPT-6 Luna) calls 7 typed tools in a capped loop</li>
+          <li>Post-filter: advice and scope</li>
+          <li>Answer to the patient. Identity always comes from the server session.</li>
+        </ol>
+        <figcaption>Request path of the patient assistant. Guardrails sit on both sides of the model, tools run in a capped loop, and identity always comes from the server session.</figcaption>
+      </figure>
     </article>
 
     <article class="proj">
@@ -167,17 +227,21 @@
       <div class="p-main">
         <span class="p-tag">LLM from scratch</span>
         <h3>Gujarati GPT-2</h3>
-        <p class="p-desc">A causal language model trained from random initialisation for Gujarati, with a SentencePiece tokenizer trained on the same corpus. Open-sourced on HuggingFace.</p>
+        <dl class="case">
+          <div><dt>Problem</dt><dd>Build a small causal language model for Gujarati from random initialisation, with a tokenizer fitted to the language.</dd></div>
+          <div><dt>Built</dt><dd>6 layers, 512 hidden, 64,000-token SentencePiece vocabulary, 256-token context. Trained 5 epochs in FP16 with AdamW on Gujarati news headlines.</dd></div>
+          <div><dt>Result</dt><dd>About 52M parameters, open on Hugging Face. Known limit: trained on headlines, so long text can drift.</dd></div>
+        </dl>
         <a class="p-link" href="https://huggingface.co/Naman0807/gujarati-lm" target="_blank" rel="noopener">HuggingFace ↗</a>
       </div>
       <dl class="spec">
-        <div><dt>Params</dt><dd>52 M</dd></div>
-        <div><dt>Layers</dt><dd>6</dd></div>
-        <div><dt>Hidden</dt><dd>512</dd></div>
-        <div><dt>Vocab</dt><dd>64,000</dd></div>
-        <div><dt>Context</dt><dd>256 tokens</dd></div>
-        <div><dt>Precision</dt><dd>FP16 · AdamW</dd></div>
-        <div><dt>Epochs</dt><dd>5</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-002-0"><span class="lbl">Params</span><span class="tip-text" role="tooltip" id="tip-002-0">Total learnable weights: about 52 million (51.8M computed from the config, with tied embeddings).</span></dt><dd>52 M</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-002-1"><span class="lbl">Layers</span><span class="tip-text" role="tooltip" id="tip-002-1">Number of stacked transformer blocks.</span></dt><dd>6</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-002-2"><span class="lbl">Hidden</span><span class="tip-text" role="tooltip" id="tip-002-2">Width of the vectors each layer works with (the hidden size).</span></dt><dd>512</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-002-3"><span class="lbl">Vocab</span><span class="tip-text" role="tooltip" id="tip-002-3">Number of tokens in the SentencePiece vocabulary, fitted to Gujarati.</span></dt><dd>64,000</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-002-4"><span class="lbl">Context</span><span class="tip-text" role="tooltip" id="tip-002-4">The longest input the model reads at once, measured in tokens.</span></dt><dd>256 tokens</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-002-5"><span class="lbl">Precision</span><span class="tip-text" role="tooltip" id="tip-002-5">FP16 is half-precision training: smaller and faster than 32-bit with little accuracy loss. AdamW is the optimiser that updates the weights, with decoupled weight decay.</span></dt><dd>FP16 · AdamW</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-002-6"><span class="lbl">Epochs</span><span class="tip-text" role="tooltip" id="tip-002-6">Full passes over the training data.</span></dt><dd>5</dd></div>
       </dl>
     </article>
 
@@ -186,16 +250,20 @@
       <div class="p-main">
         <span class="p-tag">Fine-tuning</span>
         <h3>Gujarati QA Model</h3>
-        <p class="p-desc">The GPT-2 base fine-tuned for generative question answering on the Gujarati subset of IndicSQuAD, using a structured prompt template rather than an extractive head.</p>
+        <dl class="case">
+          <div><dt>Problem</dt><dd>Make the base model answer questions in Gujarati, not only continue text.</dd></div>
+          <div><dt>Built</dt><dd>Fine-tuned 3 epochs on the Gujarati subset of L3Cube-Pune IndicSQuAD, using a Context / Question / Answer prompt template instead of an extractive head.</dd></div>
+          <div><dt>Result</dt><dd>A generative QA model on Hugging Face, same architecture as the base.</dd></div>
+        </dl>
         <a class="p-link" href="https://huggingface.co/Naman0807/gujarati-lm-finetuned" target="_blank" rel="noopener">HuggingFace ↗</a>
       </div>
       <dl class="spec">
-        <div><dt>Base</dt><dd>gujarati-lm</dd></div>
-        <div><dt>Dataset</dt><dd>IndicSQuAD (gu)</dd></div>
-        <div><dt>Format</dt><dd>Ctx / Q / A</dd></div>
-        <div><dt>Val loss</dt><dd>−18%</dd></div>
-        <div><dt>Epochs</dt><dd>3</dd></div>
-        <div><dt>Optimiser</dt><dd>AdamW · 5e-5</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-003-0"><span class="lbl">Base</span><span class="tip-text" role="tooltip" id="tip-003-0">The pre-trained model this one was fine-tuned from: gujarati-lm.</span></dt><dd>gujarati-lm</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-003-1"><span class="lbl">Dataset</span><span class="tip-text" role="tooltip" id="tip-003-1">The Gujarati subset of IndicSQuAD from L3Cube-Pune: reading-comprehension question and answer pairs.</span></dt><dd>IndicSQuAD (gu)</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-003-2"><span class="lbl">Format</span><span class="tip-text" role="tooltip" id="tip-003-2">Prompt template: Context, then Question, then Answer. The model writes the answer text instead of picking a span.</span></dt><dd>Ctx / Q / A</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-003-3"><span class="lbl">Val loss</span><span class="tip-text" role="tooltip" id="tip-003-3">Validation loss fell 18% over fine-tuning. Read it as training progress on this task, not as a benchmark score.</span></dt><dd>−18%</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-003-4"><span class="lbl">Epochs</span><span class="tip-text" role="tooltip" id="tip-003-4">Full passes over the fine-tuning data.</span></dt><dd>3</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-003-5"><span class="lbl">Optimiser</span><span class="tip-text" role="tooltip" id="tip-003-5">AdamW with a learning rate of 5e-5, a small rate suited to fine-tuning.</span></dt><dd>AdamW · 5e-5</dd></div>
       </dl>
     </article>
 
@@ -204,17 +272,21 @@
       <div class="p-main">
         <span class="p-tag">Architecture</span>
         <h3>Gujarati LLaMA2 Base</h3>
-        <p class="p-desc">A compact LLaMA2-architecture model sized for a low-resource corpus, with a custom learning-rate schedule and gradient-norm tracking through training.</p>
+        <dl class="case">
+          <div><dt>Problem</dt><dd>Try a LLaMA2-style architecture sized for a low-resource corpus.</dd></div>
+          <div><dt>Built</dt><dd>6 layers, 512 hidden, 16 heads, 64,000 vocabulary, 1,024 context, about 97M parameters, on roughly 2 GB of Gujarati text. Custom learning-rate schedule with gradient-norm tracking.</dd></div>
+          <div><dt>Result</dt><dd>Base model released on Hugging Face.</dd></div>
+        </dl>
         <a class="p-link" href="https://huggingface.co/Naman0807/gujarati-llama2-base" target="_blank" rel="noopener">HuggingFace ↗</a>
       </div>
       <dl class="spec">
-        <div><dt>Arch</dt><dd>LlamaForCausalLM</dd></div>
-        <div><dt>Layers</dt><dd>6</dd></div>
-        <div><dt>Hidden</dt><dd>512</dd></div>
-        <div><dt>Heads</dt><dd>16</dd></div>
-        <div><dt>Vocab</dt><dd>64,000</dd></div>
-        <div><dt>Corpus</dt><dd>~2 GB</dd></div>
-        <div><dt>Schedule</dt><dd>custom LR</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-004-0"><span class="lbl">Arch</span><span class="tip-text" role="tooltip" id="tip-004-0">LlamaForCausalLM is the Hugging Face class for LLaMA-style decoder-only language models.</span></dt><dd>LlamaForCausalLM</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-004-1"><span class="lbl">Layers</span><span class="tip-text" role="tooltip" id="tip-004-1">Number of stacked transformer blocks.</span></dt><dd>6</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-004-2"><span class="lbl">Hidden</span><span class="tip-text" role="tooltip" id="tip-004-2">Width of the vectors each layer works with (the hidden size).</span></dt><dd>512</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-004-3"><span class="lbl">Heads</span><span class="tip-text" role="tooltip" id="tip-004-3">Attention heads per layer. Each head learns to look at a different relationship between tokens.</span></dt><dd>16</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-004-4"><span class="lbl">Vocab</span><span class="tip-text" role="tooltip" id="tip-004-4">Number of tokens in the SentencePiece vocabulary, fitted to Gujarati.</span></dt><dd>64,000</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-004-5"><span class="lbl">Corpus</span><span class="tip-text" role="tooltip" id="tip-004-5">About 2 GB of clean Gujarati text, as stated on the model card.</span></dt><dd>~2 GB</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-004-6"><span class="lbl">Schedule</span><span class="tip-text" role="tooltip" id="tip-004-6">A custom learning-rate schedule, with the gradient norm tracked through training to watch stability.</span></dt><dd>custom LR</dd></div>
       </dl>
     </article>
 
@@ -223,16 +295,20 @@
       <div class="p-main">
         <span class="p-tag">Reinforcement learning</span>
         <h3>Mars-Mars RL</h3>
-        <p class="p-desc">A 2D platformer written in Pygame and wrapped as a Gymnasium-compatible environment, then solved with PPO and a hand-designed reward shaping for wind, thrust and fuel.</p>
+        <dl class="case">
+          <div><dt>Problem</dt><dd>Teach an agent to land a jetpack character under wind, thrust and fuel limits.</dd></div>
+          <div><dt>Built</dt><dd>A Pygame platformer wrapped as a Gymnasium environment, solved with PPO from Stable-Baselines3 and hand-shaped rewards for wind, thrust and fuel.</dd></div>
+          <div><dt>Result</dt><dd>Trained checkpoint and code on GitHub.</dd></div>
+        </dl>
         <a class="p-link" href="https://github.com/Naman0807/Mars-Mars-RL" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
       <dl class="spec">
-        <div><dt>Algorithm</dt><dd>PPO</dd></div>
-        <div><dt>Library</dt><dd>Stable-Baselines3</dd></div>
-        <div><dt>Env</dt><dd>Gymnasium API</dd></div>
-        <div><dt>Dynamics</dt><dd>wind · fuel · thrust</dd></div>
-        <div><dt>Reward</dt><dd>custom shaped</dd></div>
-        <div><dt>Artifact</dt><dd>trained checkpoint</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-005-0"><span class="lbl">Algorithm</span><span class="tip-text" role="tooltip" id="tip-005-0">PPO (Proximal Policy Optimization) limits how far each update can move the policy, which keeps training stable.</span></dt><dd>PPO</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-005-1"><span class="lbl">Library</span><span class="tip-text" role="tooltip" id="tip-005-1">Stable-Baselines3: PyTorch implementations of standard reinforcement-learning algorithms.</span></dt><dd>Stable-Baselines3</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-005-2"><span class="lbl">Env</span><span class="tip-text" role="tooltip" id="tip-005-2">Gymnasium is the standard reset-and-step interface that RL libraries expect from an environment.</span></dt><dd>Gymnasium API</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-005-3"><span class="lbl">Dynamics</span><span class="tip-text" role="tooltip" id="tip-005-3">Wind pushes the character, thrust spends fuel, and fuel is limited. The agent has to land within those limits.</span></dt><dd>wind · fuel · thrust</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-005-4"><span class="lbl">Reward</span><span class="tip-text" role="tooltip" id="tip-005-4">Hand-designed reward shaping, so the agent gets a signal for progress and not only for the final landing.</span></dt><dd>custom shaped</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-005-5"><span class="lbl">Artifact</span><span class="tip-text" role="tooltip" id="tip-005-5">The saved model weights from training, kept in the GitHub repo.</span></dt><dd>trained checkpoint</dd></div>
       </dl>
     </article>
 
@@ -241,15 +317,19 @@
       <div class="p-main">
         <span class="p-tag">Live product</span>
         <h3>PromptCraft</h3>
-        <p class="p-desc">A prompt-generation tool on the Gemini API, running since 2024. Bring-your-own-key, entirely client-side, no backend and no paid acquisition.</p>
+        <dl class="case">
+          <div><dt>Problem</dt><dd>Developers want realistic practice tasks, not generic exercises.</dd></div>
+          <div><dt>Built</dt><dd>A client-side tool on the Gemini API. Users bring their own key; there is no backend.</dd></div>
+          <div><dt>Result</dt><dd>295+ users since 2024 with no paid marketing.</dd></div>
+        </dl>
         <a class="p-link" href="https://naman0807.github.io/PromptCraft/" target="_blank" rel="noopener">Live ↗</a>
       </div>
       <dl class="spec">
-        <div><dt>Model</dt><dd>Gemini 2.0 Flash</dd></div>
-        <div><dt>Users</dt><dd>295 +</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-006-0"><span class="lbl">Model</span><span class="tip-text" role="tooltip" id="tip-006-0">Gemini 2.0 Flash, called through Google's Gemini API.</span></dt><dd>Gemini 2.0 Flash</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-006-1"><span class="lbl">Users</span><span class="tip-text" role="tooltip" id="tip-006-1">295+ real users since the 2024 launch.</span></dt><dd>295 +</dd></div>
         <div><dt>Launched</dt><dd>2024</dd></div>
-        <div><dt>Keys</dt><dd>BYO · client-side</dd></div>
-        <div><dt>Marketing</dt><dd>$0</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-006-3"><span class="lbl">Keys</span><span class="tip-text" role="tooltip" id="tip-006-3">Bring your own key: users add their own Gemini API key and the tool runs in the browser with no backend of mine in between.</span></dt><dd>BYO · client-side</dd></div>
+        <div><dt tabindex="0" aria-describedby="tip-006-4"><span class="lbl">Marketing</span><span class="tip-text" role="tooltip" id="tip-006-4">No paid acquisition.</span></dt><dd>$0</dd></div>
       </dl>
     </article>
   </div>
@@ -319,7 +399,8 @@
 <div class="contact" id="contact">
   <div class="wrap">
     <h2>Let's build<br>something <em>real.</em></h2>
-    <a class="mail" href="mailto:parmarnaman19@gmail.com">parmarnaman19@gmail.com</a>
+    <div class="mailrow"><a class="mail" href="mailto:parmarnaman19@gmail.com">parmarnaman19@gmail.com</a>
+      <button class="btn copy" type="button" data-copy="parmarnaman19@gmail.com">Copy</button><span class="status mono" role="status" aria-live="polite"></span></div>
     <div class="links mono">
       <a href="https://github.com/Naman0807" target="_blank" rel="noopener">GitHub ↗</a>
       <a href="https://www.linkedin.com/in/namanparmar" target="_blank" rel="noopener">LinkedIn ↗</a>
