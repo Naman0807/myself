@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://naman0807.github.io/myself/sitemap.xml
